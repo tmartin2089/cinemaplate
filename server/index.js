@@ -2,13 +2,15 @@ var express = require('express');
 var Path = require('path');
 var routes = express.Router();
 var cities = require('cities');
-var yelp = require('yelp')
+var yelp = require('./yelpHelp');
+
 //
 //route to your index.html
 //
 var assetFolder = Path.resolve(__dirname, '../client/');
 routes.use(express.static(assetFolder));
 
+yelp.getFoodList();
 //
 // Example endpoint (also tested in test/server/index_test.js)
 //
@@ -25,6 +27,7 @@ if(process.env.NODE_ENV !== 'test') {
   routes.get('/*', function(req, res){
     res.sendFile( assetFolder + '/index.html' )
   })
+
 
   //
   // We're in development or production mode;
