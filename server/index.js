@@ -2,7 +2,7 @@ var express = require('express');
 var Path = require('path');
 var routes = express.Router();
 var cities = require('cities');
-var yelp = require('./yelp.js')
+var yelp = require('yelp')
 //
 //route to your index.html
 //
