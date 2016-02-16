@@ -10,7 +10,11 @@ var yelp = require('./yelpHelp');
 var assetFolder = Path.resolve(__dirname, '../client/');
 routes.use(express.static(assetFolder));
 
+//uncomment me to get the foodlist
+//warning - I will crash nodemon
 yelp.getFoodList();
+//
+
 //
 // Example endpoint (also tested in test/server/index_test.js)
 //
