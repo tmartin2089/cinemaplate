@@ -4,7 +4,7 @@ var fs = Promise.promisifyAll(require('fs'));
 var client = Yelp.createClient({
   oauth: {
     "consumer_key": "GGeNigXussIz3mkdhKaL-Q",
-    "consumer_secret": "Lxen47uBnJffmNirInmIkuCimAw",
+    "consumer_secret": process.env.CONSUMER,
     "token": "QnSWusN9Xr4a75q-edEEuAGTZVxfZRN3",
     "token_secret": "ZVPZtU1dBh3LP3UJtpuwPIXp3Qc"
   }
@@ -76,8 +76,7 @@ var call10 = client.search({
 
 //goal for today -  wrap above calls in a function that you can pass zip codes into
 
-//then return JSON object to index
-
+//main yelp getter
 yelp.getFoodList = function(){
   return Promise.all([call1, call2, call3, call4, call5, call6, call7, call8, call9, call10])
   .then(function(res){
@@ -91,11 +90,10 @@ yelp.getFoodList = function(){
     return eat24;
 
   }).then(function(res){
-      //fs.appendFile('promise.json', JSON.stringify(res, null, 4),{})
-      console.log('made it inside of next then', res.nomnom3);
-
+      //return promise back to index.js 
+      return res;
   })
   .catch(function(err){
-    console.log('actually yo, Im an error',err)
+    console.log('Error in yelp.getFoodList:', err)
   })
 }

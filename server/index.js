@@ -12,7 +12,9 @@ routes.use(express.static(assetFolder));
 
 //uncomment me to get the foodlist
 //warning - I will crash nodemon
-yelp.getFoodList();
+yelp.getFoodList().then(function(res){
+    console.log('do we make it back to index.js?',res);
+});
 //
 
 //
